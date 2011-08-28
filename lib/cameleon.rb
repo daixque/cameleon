@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-require 'cameleon/action'
+#require 'cameleon/action'
 require 'cameleon/app'
 
 class Cameleon
