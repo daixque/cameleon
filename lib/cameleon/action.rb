@@ -23,13 +23,13 @@ class Cameleon
       src = File.read(switch_filepath)
       body = catch(:read) {
         eval src
-        render "default"
+        render find_default_file
       }
     end
     
     def __render(filename)
       body = catch(:read) {
-        render "default"
+        render filename
       }
     end
     
@@ -38,6 +38,10 @@ class Cameleon
       erb = Erubis::Eruby.new src
       body = erb.result(binding)
       throw :read, body
+    end
+    
+    def find_default_file
+      Dir.entries(@base_path).find { |f| f =~ /^default/ }
     end
   
     def handle(req)
@@ -54,7 +58,7 @@ class Cameleon
       elsif File.exists?(switch_filepath)
         content = eval_switch switch_filepath
       else
-        content = __render "default"
+        content = __render find_default_file
       end
       [@status_code, @headers, [content]]
     end
