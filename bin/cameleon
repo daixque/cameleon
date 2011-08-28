@@ -6,6 +6,10 @@ require 'rubygems'
 
 command = ARGV.shift
 case command
-when "server"
+when 'server'
   require 'cameleon/cli/server'
+when 'new'
+  require 'cameleon/cli/new'
+when 'generate'
+  require 'cameleon/cli/generate'
 end
