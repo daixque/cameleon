@@ -19,9 +19,11 @@ class Cameleon
       @headers = {
         "Content-Type" => "text/plain"
       }
+      @req = req
       @params = req.params
       req.body.rewind
       @body = req.body.read
+      @method = req.env["REQUEST_METHOD"]
     end
     
     def __eval_switch(switch_src)
@@ -41,6 +43,12 @@ class Cameleon
     
     def status_code(code)
       @status_code = code
+    end
+    
+    def on(*http_methods, &block)
+      if http_methods.map { |m| m.to_s.upcase }.include? @method
+        yield
+      end
     end
     
     def render(filename)
