@@ -3,13 +3,4 @@
 
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'rubygems'
-
-command = ARGV.shift
-case command
-when 'server'
-  require 'cameleon/cli/server'
-when 'new'
-  require 'cameleon/cli/new'
-when 'generate'
-  require 'cameleon/cli/generate'
-end
+require 'cameleon/cli'
