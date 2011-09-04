@@ -2,11 +2,14 @@
 
 require 'cameleon'
 require 'fileutils'
-
+  
 def new
   project_name = ARGV.shift
-  FileUtils.mkdir project_name
-  FileUtils.cp_r File.join(Cameleon.root, 'response'), project_name
+  FileUtils.mkdir_p project_name
+  base_dir = File.join(Cameleon.root, 'template/new')
+  Dir.glob("#{base_dir}/*").map do |f|
+    FileUtils.cp_r f, project_name
+  end
 end
 
 new
