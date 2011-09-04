@@ -53,8 +53,13 @@ def run
     require 'cameleon/cli/new'
   when 'generate'
     require 'cameleon/cli/generate'
+  when 'gallery'
+    require 'cameleon/cli/gallery'
   when 'help'
     usage
+  else
+    puts "unknown command: #{command}."
+    puts "'cameleon help' for usage."
   end
 end
 
