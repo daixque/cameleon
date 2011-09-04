@@ -15,7 +15,7 @@ class Cameleon
       end
       @params = req.params
       @body = req.body.read
-      switch_filepath = File.join @base_path, "switch.rb"
+      switch_filepath = File.join @base_path, "_switch.rb"
       renderer = nil
       if !File.exists?(@base_path)
         return [404, {}, ["dir not found: #{@base_path}"]]
