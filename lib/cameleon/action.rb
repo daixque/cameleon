@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-
 require 'erubis'
 
 class Cameleon
   class Action
     def find_default_file
-      Dir.entries(@base_path).find { |f| f =~ /^default/ }
+      Dir.entries(@base_path).find { |f| f =~ /^default\./ }
     end
   
     def handle(req)
