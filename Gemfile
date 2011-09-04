@@ -3,6 +3,7 @@ gem "erubis"
 gem "rack"
 gem "hashie"
 gem "json"
+gem "nokogiri"
 
 group :development do
   gem "shoulda", ">= 0"

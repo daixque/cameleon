@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'hashie'
 require 'json'
+require 'nokogiri'
 
 class Cameleon
   class Renderer
@@ -43,6 +44,10 @@ class Cameleon
     
     def json_body
       @json_body || @json_body = Hashie::Mash.new(JSON.parse(@body))
+    end
+    
+    def xml_body
+      @xml_body || @xml_body = Nokogiri::XML::Document.parse(@body)
     end
     
     def build_response
