@@ -1,6 +1,8 @@
 source "http://rubygems.org"
 gem "erubis"
 gem "rack"
+gem "hashie"
+gem "json"
 
 group :development do
   gem "shoulda", ">= 0"

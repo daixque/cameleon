@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+require 'hashie'
+require 'json'
+
 class Cameleon
   class Renderer
     class << self
@@ -20,7 +24,7 @@ class Cameleon
         "Content-Type" => "text/plain"
       }
       @req = req
-      @params = req.params
+      @params = Hashie::Mash.new req.params
       req.body.rewind
       @body = req.body.read
       @method = req.env["REQUEST_METHOD"]
@@ -31,6 +35,14 @@ class Cameleon
         eval switch_src
         render find_default_file
       }
+    end
+    
+    def params
+      @params
+    end
+    
+    def json_body
+      @json_body || @json_body = Hashie::Mash.new(JSON.parse(@body))
     end
     
     def build_response
@@ -49,6 +61,22 @@ class Cameleon
       if http_methods.map { |m| m.to_s.upcase }.include? @method
         yield
       end
+    end
+    
+    def get(&block)
+      on(:get, &block)
+    end
+    
+    def put(&block)
+      on(:put, &block)
+    end
+    
+    def post(&block)
+      on(:post, &block)
+    end
+    
+    def delete(&block)
+      on(:delete, &block)
     end
     
     def render(filename)
