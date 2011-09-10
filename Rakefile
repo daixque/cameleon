@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "cameleon"
   gem.homepage = "http://github.com/daixque/cameleon"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Cameleon is HTTP mock server framework.}
+  gem.description = %Q{Cameleon is HTTP mock server framework based on Rack. You can easily create HTTP server for mockup or stub of external system for your application.}
   gem.email = "daixque@gmail.com"
   gem.authors = ["daixque"]
   # dependencies defined in Gemfile
