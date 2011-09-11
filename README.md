@@ -1,7 +1,7 @@
 Cameleon
 =======================================
 
-Cameleon is HTTP mock server framework based on Rack. You can easily create HTTP server for mockup or stub of external system for your application.
+Cameleon (not Chameleon!) is HTTP mock server framework based on Rack. You can easily create HTTP server for mockup or stub of external system for your application.
 
 All you have to do to create a new interface is simply make directory and put text file into the directory.
 
