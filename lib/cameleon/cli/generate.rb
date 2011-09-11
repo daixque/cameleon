@@ -5,6 +5,11 @@ require 'erubis'
 require 'fileutils'
 
 def generate
+  unless Cameleon.config
+    $stderr.puts "not cameleon home"
+    exit(1)
+  end
+  
   path = ARGV.shift
   dir_path = File.join "response", path
   FileUtils.mkdir_p dir_path
