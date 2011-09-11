@@ -11,7 +11,7 @@ class Cameleon
         Renderer.new(base_path, req).__eval_switch(switch_src)
       end
       
-      def render_file(base_path, req, filename)
+      def render_file(base_path, req, filename = nil)
         catch(:read) {
           Renderer.new(base_path, req).render(filename)
         }
@@ -84,7 +84,8 @@ class Cameleon
       on(:delete, &block)
     end
     
-    def render(filename)
+    def render(filename = nil)
+      filename = find_default_file unless filename
       src = File.read File.join(@base_path, filename)
       erb = Erubis::Eruby.new src
       @body = erb.result(binding)

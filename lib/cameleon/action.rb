@@ -21,7 +21,7 @@ class Cameleon
       elsif File.exists?(switch_filepath)
         renderer = Renderer.run_switch(@base_path, req, switch_filepath)
       else
-        renderer = Renderer.render_file(@base_path, req, find_default_file)
+        renderer = Renderer.render_file(@base_path, req)
       end
       renderer.build_response
     end
