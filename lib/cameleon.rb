@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 require 'cameleon/app'
+require 'hashie'
+require 'yaml'
 
 class Cameleon
   @@imported = {}
