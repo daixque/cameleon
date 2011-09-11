@@ -4,6 +4,7 @@ require 'cameleon/app'
 
 class Cameleon
   @@imported = {}
+  @@config = nil
   
   class << self
     def root
@@ -28,5 +29,15 @@ class Cameleon
         return true
       end
     end # import
+    
+    def config
+      @config ||= begin
+        path = "./cameleon.yml"
+        unless File.exist? path
+          return nil
+        end
+        Hashie::Mash.new YAML.load(File.read(path))
+      end
+    end # config
   end # class methods
 end

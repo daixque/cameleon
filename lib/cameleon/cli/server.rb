@@ -26,12 +26,9 @@ def start(config)
   Rack::Handler::WEBrick.run app, :Port => (config.port || 9292)
 end
 
-def load_config
-  unless File.exist? "./cameleon.yml"
-    $stderr.puts "[ERROR] cameleon.yml is not found."
-    exit(1)
-  end
-  config = Hashie::Mash.new YAML.load(File.read("./cameleon.yml"))
+config = Cameleon.config
+unless config
+  $stderr.puts "[ERROR] cameleon.yml is not found."
+  exit(1)
 end
-
-start load_config
+start config
