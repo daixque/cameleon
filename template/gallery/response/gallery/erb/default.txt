@@ -1,0 +1,2 @@
+You can use ERuby(Erubis) syntax in response file.
+time: <%= DateTime.now %>
