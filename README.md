@@ -11,11 +11,13 @@ Features:
  - Communicate in JSON, XML or any format over HTTP
  - Easy to create RESTful API
 
+
 ## Installation
 You can install Cameleon using RubyGems as below:
 
     $ gem install cameleon
-    
+
+  
 ## Getting started
 First, create a new Cameleon project.
 
@@ -32,6 +34,7 @@ OK, your server is now running. Test your server using curl.
     Hey, I am cameleon!
     Edit response folder to change response whatever you want.
     see README.md more detail.
+
 
 ## Usage
 ### creating HTTP interface
@@ -53,12 +56,19 @@ Test the interface:
 
 ### generate command
 Or simply, you can create a interface using "cameleon generate" command.
-If you want to create a new interface "/path/to/foo":
+If you want to create a new interface "/path/to/foo", type:
 
     $ cameleon generate path/to/foo
 
+and test it.
+
+    $ curl http://localhost:9292/path/to/foo
+    edit me: response/path/to/foo/default
+
+So edit the file as you need.
+
 ### _switch.rb
-If you want to change the response by HTTP request, you must write "_switch.rb" in your response directory.
+If you want to change the response by HTTP request, you shold create "_switch.rb" in your response directory.
 
 Below shows a sample of "_switch.rb".
 
@@ -75,13 +85,13 @@ Below shows a sample of "_switch.rb".
     
     # if else, render "default" (any extention acceptable) file.
 
+
 ## Gallery
 You can get various samples using "cameleon gallery" command.
     $ cd YOUR_CAMELEON_HOME
     $ cameleon gallery
 
-Check out response/gallery directory and "_switch.rb" to know usage of API for "_switch.rb".
-
+Check out response/gallery directory and "_switch.rb" to know usage of APIs.
 
 
 ## License
