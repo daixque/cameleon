@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/cameleon",
+    "cameleon.gemspec",
     "lib/cameleon.rb",
     "lib/cameleon/action.rb",
     "lib/cameleon/app.rb",
