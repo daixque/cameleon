@@ -3,13 +3,14 @@ Cameleon
 
 Cameleon (not Chameleon!) is HTTP mock server framework based on Rack. You can easily create HTTP server for mockup or stub of external system for your application.
 
-All you have to do to create a new interface is simply make directory and put text file into the directory.
+All you have to do to create a new interface is simply make directory and put response file into the directory.
 
 Features:
 
+ - Easy to create new interfaces (only to create directory and put response file into it)
  - Simple API for "_switch.rb" (for selecting response file)
  - Communicate in JSON, XML or any format over HTTP
- - Easy to create RESTful API
+ - Ready for RESTful API
 
 
 ## Installation
@@ -21,7 +22,7 @@ You can install Cameleon using RubyGems as below:
 ## Getting started
 First, create a new Cameleon project.
 
-    $ cameleon new your_project_name.
+    $ cameleon new your_project_name
 
 Then move the directory now you created, and launch cameleon server.
 
@@ -43,7 +44,7 @@ Think about creating HTTP interface such like below:
  - URL: /path/to/interface
  - response: "ok"
 
-Then all you have to do are below:
+Then all you have to do are:
 
     $ mkdir -p response/path/to/interface
     $ cd response/path/to/interface
@@ -68,7 +69,7 @@ and test it.
 So edit the file as you need.
 
 ### _switch.rb
-If you want to change the response by HTTP request, you shold create "_switch.rb" in your response directory.
+If you want to change the response by HTTP request, you should create "_switch.rb" in your response directory.
 
 Below shows a sample of "_switch.rb".
 
@@ -88,6 +89,7 @@ Below shows a sample of "_switch.rb".
 
 ## Gallery
 You can get various samples using "cameleon gallery" command.
+
     $ cd YOUR_CAMELEON_HOME
     $ cameleon gallery
 
