@@ -1,1 +1,5 @@
 port: 9292
+
+# uncommnet to enable JSON format validation feature
+#validation:
+#  type: json
