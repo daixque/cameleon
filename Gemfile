@@ -9,5 +9,4 @@ gem "nokogiri"
 group :development do
   gem "shoulda", ">= 0"
   gem "bundler"
-  gem "jeweler", "~> 1.6.4"
 end
