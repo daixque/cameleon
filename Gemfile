@@ -1,12 +1,4 @@
-source "http://rubygems.org"
-gem "erubis"
-gem "rack"
-gem "hashie"
-gem "json"
-gem "json-schema"
-gem "nokogiri"
+source 'https://rubygems.org'
 
-group :development do
-  gem "shoulda", ">= 0"
-  gem "bundler"
-end
+# Specify your gem's dependencies in cameleon.gemspec
+gemspec
