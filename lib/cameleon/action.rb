@@ -13,6 +13,10 @@ class Cameleon
     def find_default_file
       Dir.entries(@base_path).find { |f| f =~ /^default\./ }
     end
+
+    def switch_filepath
+      File.join @base_path, "_switch.rb"
+    end
   
     def handle(req)
       @base_path = File.join("response", req.path)
@@ -28,16 +32,54 @@ class Cameleon
           return [400, {}, [e.message]]
         end
       end
-      switch_filepath = File.join @base_path, "_switch.rb"
       renderer = nil
       if !File.exists?(@base_path)
-        return [404, {}, ["dir not found: #{@base_path}"]]
-      elsif File.exists?(switch_filepath)
+        if placeholder_dir = on_placeholder_dir("response", req.path)
+          @base_path = placeholder_dir
+        else
+          return [404, {}, ["dir not found: #{@base_path}"]]
+        end
+      end
+      if File.exists?(switch_filepath)
         renderer = Renderer.run_switch(@base_path, req, switch_filepath)
       else
         renderer = Renderer.render_file(@base_path, req)
       end
       renderer.build_response
+    end
+
+    def on_placeholder_dir(base_dir_path, target_dir_path, found = false)
+      if (!target_dir_path || target_dir_path == "")
+        if found
+          return base_dir_path
+        else
+          return nil
+        end
+      end
+      target_dir_path = target_dir_path.gsub(/^\//, '')
+      first_dir_name, *rest = target_dir_path.split('/')
+      first_dir_path = File.join(base_dir_path, first_dir_name)
+      if File.exists?(first_dir_path)
+        on_placeholder_dir(first_dir_path, rest.join('/'))
+      else
+        new_dir = search_placeholder_dir(base_dir_path, first_dir_name)
+        if new_dir
+          on_placeholder_dir(new_dir, rest.join('/'), true)
+        end
+      end
+    end
+
+    def search_placeholder_dir(base_dir_path, target_dir_name)
+      files = Dir.glob(File.join(base_dir_path, '*'))
+      # find directory start with $.
+      # if there are some directories start with $, use one that found first.
+      found = files.find_all{ |f| File.directory?(f) }.find{ |f| ret = f =~ /.*\$([a-zA-Z0-9]*)$/ }
+      if (found)
+        path_name = $1
+        @params[path_name] = target_dir_name
+        ret = File.join(base_dir_path, "$" + path_name)
+        ret
+      end
     end
 
     def validate_request_body

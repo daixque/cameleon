@@ -88,6 +88,21 @@ Below shows a sample of "_switch.rb".
     
     # if else, render "default" (any extention acceptable) file.
 
+### RESTful URI
+Cameleon supports RESTful URI such as:
+
+    http://localhost:9292/resource/${category_name}/${id}
+
+If you want to use such URI, create directory as below.
+
+    response/resource/$category_name/$id
+
+Directory that name start with '$' is placeholder of the URI.
+If directory name is '$category_name/$id' and URI 'fiction/12',
+'fiction' and '12' are mapped into params['category_name'] and params['id'].
+Then in your _switch.rb or response(erb) file,
+you can use params['category_name'] and params['id'] they are specified by URI.
+
 ### Validation
 Cameleon can validate HTTP request body. Currently JSON format is supported. If you want to validate your request to Cameleon,  add 'validation' attribute and 'type' sub-attribute as 'json' into your 'cameleon.yml' config file.
 
