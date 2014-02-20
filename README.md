@@ -146,7 +146,7 @@ Cameleon is released under the MIT license.
 
 
 ## Copyright
-Copyright (c) 2011 [daisuke sugimori][1] ([@daixque][2]).
+Copyright (c) 2011 - 2014 [daisuke sugimori][1] ([@daixque][2]).
 
 [1]: http://opentechnica.blogspot.com/
 [2]: http://twitter.com/daixque
