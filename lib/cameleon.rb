@@ -52,5 +52,9 @@ class Cameleon
     def setup(&block)
       block.call(@config)
     end
+
+    def version
+      File.read(File.join(Cameleon.root, "VERSION")).chomp
+    end
   end # class methods
 end
