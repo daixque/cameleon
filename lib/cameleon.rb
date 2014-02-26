@@ -40,6 +40,17 @@ class Cameleon
         end
         Hashie::Mash.new YAML.load(File.read(path))
       end
+      load_setup
+      @config
     end # config
+
+    def load_setup
+      require './initializer.rb'
+    end
+
+    # call from initializer.rb
+    def setup(&block)
+      block.call(@config)
+    end
   end # class methods
 end
