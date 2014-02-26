@@ -132,6 +132,20 @@ Notice:
 
 Cameleon validates request body only in POST or PUT http method.
 
+### initializer.rb : Setup for _switch.rb
+
+If you want to use some libraries or your own modules on your _switch.rb, cameleons load initializer.rb on boot-time.
+So you can write some code inside Cameleon::setup scope.
+
+    Cameleon::setup do |config|
+      require 'some_library'
+      config.foo = 'FOO'
+    end
+
+Then you can refer the config in _switch.rb.
+
+    Cameleon.config.foo #=> 'FOO'
+
 ## Gallery
 You can get various samples using "cameleon gallery" command.
 
