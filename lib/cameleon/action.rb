@@ -73,7 +73,7 @@ class Cameleon
       files = Dir.glob(File.join(base_dir_path, '*'))
       # find directory start with $.
       # if there are some directories start with $, use one that found first.
-      found = files.find_all{ |f| File.directory?(f) }.find{ |f| ret = f =~ /.*\$([a-zA-Z0-9]*)$/ }
+      found = files.find_all{ |f| File.directory?(f) }.find{ |f| ret = f =~ /.*\$([a-zA-Z0-9_\-]*)$/ }
       if (found)
         path_name = $1
         @params[path_name] = target_dir_name
