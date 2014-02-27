@@ -45,7 +45,8 @@ class Cameleon
     end # config
 
     def load_setup
-      require './initializer.rb'
+      path = './initializer.rb'
+      require path if File.exist? path
     end
 
     # call from initializer.rb
