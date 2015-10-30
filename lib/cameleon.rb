@@ -3,6 +3,7 @@
 require 'cameleon/app'
 require 'hashie'
 require 'yaml'
+require 'active_support/all'
 
 class Cameleon
   @@imported = {}

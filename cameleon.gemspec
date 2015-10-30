@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "json", [">= 0"]
   spec.add_runtime_dependency "json-schema", [">= 0"]
   spec.add_runtime_dependency "nokogiri", [">= 0"]
+  spec.add_runtime_dependency "activesupport", [">= 4.0.0"]
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
