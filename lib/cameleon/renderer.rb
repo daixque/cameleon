@@ -91,6 +91,12 @@ class Cameleon
       @body = erb.result(binding)
       throw :read, self
     end
+
+    def use(switch_filename)
+      path = File.join(@base_path, switch_filename)
+      src = File.read(path)
+      eval src
+    end
     
     def find_default_file
       Dir.entries(@base_path).find { |f| f =~ /^default/ }
