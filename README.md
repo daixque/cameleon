@@ -45,6 +45,8 @@ Create HTTP interface such as:
  - URL: GET /path/to/interface
  - response: "ok"
 
+Follow these lines:
+
     $ mkdir -p response/path/to/interface
     $ cd response/path/to/interface
     $ echo "ok" > default.txt
