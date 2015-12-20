@@ -21,11 +21,11 @@ You can install Cameleon using RubyGems as below:
 
   
 ## Getting started
-First, create a new Cameleon project using 'cameleon new' command.
+Create a new Cameleon project using 'cameleon new' command.
 
     $ cameleon new your_project_name
 
-Move into the directory you've created now, and start cameleon server.
+Move to the directory and start cameleon server.
 
     $ cd your_project_name
     $ cameleon server
@@ -40,12 +40,10 @@ OK, your server is now running. Test your server using curl.
 
 ## Usage
 ### creating HTTP interface
-Think about creating HTTP interface such like below:
+Create HTTP interface such as:
 
- - URL: /path/to/interface
+ - URL: GET /path/to/interface
  - response: "ok"
-
-Follow these steps:
 
     $ mkdir -p response/path/to/interface
     $ cd response/path/to/interface
@@ -57,8 +55,8 @@ Test the interface:
     ok
 
 ### generate command
-You can create a interface using "cameleon generate" command.
-If you want to create a new interface "/path/to/foo", type:
+You can also create a interface using "cameleon generate" command.
+To create a new interface "GET /path/to/foo", type:
 
     $ cameleon generate path/to/foo
 
@@ -70,10 +68,10 @@ and test it.
 Edit the file as you need.
 
 ### _switch.rb
-If you want to change the response by HTTP request, you should create "_switch.rb" in your response directory.
-"_switch.rb" should be pure Ruby file. You can write any logic you need in Ruby.
+Create "_switch.rb" in your response directory to change the response by HTTP request.
+"_switch.rb" is pure Ruby file. You can write any logic you need in Ruby.
 
-Below shows a sample of "_switch.rb".
+_switch.rb
 
     # you can access URL parameters by 'params'
     case params[:key]
@@ -88,12 +86,15 @@ Below shows a sample of "_switch.rb".
     
     # if else, render "default" (any extention acceptable) file.
 
+Call *render* method to select response file.
+When *render* called, evaluation of "_switch.rb" will be terminated and following code won't be interpreted.
+
 ### RESTful URI
-Cameleon supports RESTful URI such as:
+Cameleon supports RESTful URI (including path variable) such as:
 
     http://localhost:9292/resource/${category_name}/${id}
 
-If you want to use such URI, create directory as below.
+To create such URI, create directory as:
 
     response/resource/$category_name/$id
 
@@ -101,7 +102,7 @@ Directory that name start with '$' is placeholder of the URI.
 If directory name is '$category_name/$id' and URI 'fiction/12',
 'fiction' and '12' are mapped into params['category_name'] and params['id'].
 Then in your _switch.rb or response(erb) file,
-you can use params['category_name'] and params['id'] they are specified by URI.
+you can use params['category_name'] and params['id'] to access the path variable.
 
 ### Validation
 Cameleon can validate HTTP request body. Currently JSON format is supported. If you want to validate your request to Cameleon,  add 'validation' attribute and 'type' sub-attribute as 'json' into your 'cameleon.yml' config file.
@@ -134,25 +135,25 @@ Cameleon validates request body only in POST or PUT http method.
 
 ### initializer.rb : Setup for _switch.rb
 
-If you want to use some libraries or your own modules on your _switch.rb, cameleons load initializer.rb on boot-time.
-So you can write some code inside Cameleon::setup scope.
+To use some libraries or your own modules on your _switch.rb, cameleon load initializer.rb on boot-time.
+You can write some code inside Cameleon::setup scope.
 
     Cameleon::setup do |config|
       require 'some_library'
       config.foo = 'FOO'
     end
 
-Then you can refer the config in _switch.rb.
+*config* object can be referred as *Cameleon.config* in _switch.rb.
 
     Cameleon.config.foo #=> 'FOO'
 
 ## Gallery
-You can get various samples using "cameleon gallery" command.
+Create various samples using "cameleon gallery" command.
 
     $ cd YOUR_CAMELEON_HOME
     $ cameleon gallery
 
-Check out response/gallery directory and "_switch.rb" to know usage of APIs.
+Check out response/gallery directory and "_switch.rb" to know some usage of APIs.
 
 
 ## License
@@ -160,7 +161,7 @@ Cameleon is released under the MIT license.
 
 
 ## Copyright
-Copyright (c) 2011 - 2014 [daisuke sugimori][1] ([@daixque][2]).
+Copyright (c) 2011 - 2015 [daisuke sugimori][1] ([@daixque][2]).
 
 [1]: http://opentechnica.blogspot.com/
 [2]: http://twitter.com/daixque
